@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpolkadot_contract_wizard=self.webpackChunkpolkadot_contract_wizard||[]).push([[5539],{2689:function(a){function t(a){a.languages.brainfuck={pointer:{pattern:/<|>/,alias:"keyword"},increment:{pattern:/\+/,alias:"inserted"},decrement:{pattern:/-/,alias:"deleted"},branching:{pattern:/\[|\]/,alias:"important"},operator:/[.,]/,comment:/\S+/}}a.exports=t,t.displayName="brainfuck",t.aliases=[]}}]);
+//# sourceMappingURL=react-syntax-highlighter_languages_refractor_brainfuck.5f50010a.chunk.js.map

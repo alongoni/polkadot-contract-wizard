@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpolkadot_contract_wizard=self.webpackChunkpolkadot_contract_wizard||[]).push([[1438],{7209:function(a){function t(a){a.languages.arff={comment:/%.*/,string:{pattern:/(["'])(?:\\.|(?!\1)[^\\\r\n])*\1/,greedy:!0},keyword:/@(?:attribute|data|end|relation)\b/i,number:/\b\d+(?:\.\d+)?\b/,punctuation:/[{},]/}}a.exports=t,t.displayName="arff",t.aliases=[]}}]);
+//# sourceMappingURL=react-syntax-highlighter_languages_refractor_arff.0b7260df.chunk.js.map
