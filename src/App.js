@@ -1,25 +1,26 @@
-import { Fragment } from "react";
-import { Disclosure, Menu, Tab, Transition } from "@headlessui/react";
-import { CopyBlock, nord } from "react-code-blocks";
+import { Fragment, useState } from 'react';
+import { Disclosure, Menu, Tab, Transition } from '@headlessui/react';
+import { CopyBlock, nord } from 'react-code-blocks';
+import { EXTENSIONS } from './constants';
 
 const user = {
-  name: "Tom Cook",
-  email: "tom@example.com",
+  name: 'Tom Cook',
+  email: 'tom@example.com',
   imageUrl:
-    "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
 };
 const navigation = [
-  { name: "INK Wizard", href: "#", current: true },
-  { name: "ASK Wizard", href: "#", current: false },
+  { name: 'INK Wizard', href: '#', current: true },
+  { name: 'ASK Wizard', href: '#', current: false },
 ];
 const userNavigation = [
-  { name: "Your Profile", href: "#" },
-  { name: "Settings", href: "#" },
-  { name: "Sign out", href: "#" },
+  { name: 'Your Profile', href: '#' },
+  { name: 'Settings', href: '#' },
+  { name: 'Sign out', href: '#' },
 ];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ');
 }
 
 export default function Example({
@@ -28,6 +29,7 @@ export default function Example({
   showLineNumbers,
   startingLineNumber,
 }) {
+  const [checked, setChecked] = useState({});
   const text = `// Copyright (c) 2012-2022 Supercolony
   //
   // Permission is hereby granted, free of charge, to any person obtaining
@@ -47,7 +49,13 @@ export default function Example({
   // NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
   // LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
   // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-  // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. ${
+    checked.mintable?.checked ? checked.mintable.code : ''
+  }${checked.burnable?.checked ? checked.burnable.code : ''}${
+    checked.cappel?.checked ? checked.cappel.code : ''
+  }${checked.metadata?.checked ? checked.metadata.code : ''}${
+    checked.wrapper?.checked ? checked.wrapper.code : ''
+  }
   
   pub use crate::{
       psp22,
@@ -370,6 +378,11 @@ export default function Example({
           Ok(())
       }
   }`;
+
+  const handleCheck = (e, { id, code }) => {
+    const { checked } = e.target;
+    setChecked((prevState) => ({ ...prevState, [id]: { checked, code } }));
+  };
   return (
     <>
       <div className="min-h-full">
@@ -395,11 +408,11 @@ export default function Example({
                             href={item.href}
                             className={classNames(
                               item.current
-                                ? "bg-gray-400 text-black"
-                                : "text-gray-800 hover:bg-gray-700 hover:text-white",
-                              "px-3 py-2 rounded-md text-sm font-medium"
+                                ? 'bg-gray-400 text-black'
+                                : 'text-gray-800 hover:bg-gray-700 hover:text-white',
+                              'px-3 py-2 rounded-md text-sm font-medium'
                             )}
-                            aria-current={item.current ? "page" : undefined}
+                            aria-current={item.current ? 'page' : undefined}
                           >
                             {item.name}
                           </a>
@@ -444,8 +457,8 @@ export default function Example({
                                   <a
                                     href={item.href}
                                     className={classNames(
-                                      active ? "bg-gray-100" : "",
-                                      "block px-4 py-2 text-sm text-gray-700"
+                                      active ? 'bg-gray-100' : '',
+                                      'block px-4 py-2 text-sm text-gray-700'
                                     )}
                                   >
                                     {item.name}
@@ -473,11 +486,11 @@ export default function Example({
                       href={item.href}
                       className={classNames(
                         item.current
-                          ? "bg-gray-900 text-white"
-                          : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                        "block px-3 py-2 rounded-md text-base font-medium"
+                          ? 'bg-gray-900 text-white'
+                          : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        'block px-3 py-2 rounded-md text-base font-medium'
                       )}
-                      aria-current={item.current ? "page" : undefined}
+                      aria-current={item.current ? 'page' : undefined}
                     >
                       {item.name}
                     </Disclosure.Button>
@@ -548,52 +561,19 @@ export default function Example({
                           <legend className="text-fuchsia-500">
                             EXTENSIONS:
                           </legend>
-
-                          <div>
-                            <input
-                              className="h-4 w-4 mr-2 border-gray-300"
-                              type="checkbox"
-                              id="huey"
-                              name="drone"
-                              value="huey"
-                              checked
-                            />
-                            <label for="huey">Mintable</label>
-                          </div>
-
-                          <div>
-                            <input
-                              className="h-4 w-4 mr-2  border-gray-300"
-                              type="checkbox"
-                              id="dewey"
-                            />
-                            <label for="dewey">Burnable</label>
-                          </div>
-
-                          <div>
-                            <input
-                              className="h-4 w-4 mr-2 border-gray-300"
-                              type="checkbox"
-                              id="louie"
-                            />
-                            <label for="louie">Cappel</label>
-                          </div>
-                          <div>
-                            <input
-                              className="h-4 w-4 mr-2 border-gray-300"
-                              type="checkbox"
-                              id="meta"
-                            />
-                            <label for="meta">Metadata</label>
-                          </div>
-                          <div>
-                            <input
-                              className="h-4 w-4 mr-2 border-gray-300"
-                              type="checkbox"
-                              id="wrapper"
-                            />
-                            <label for="wrapper">Wrapper</label>
-                          </div>
+                          {EXTENSIONS.map((extension) => (
+                            <div>
+                              <input
+                                className="h-4 w-4 mr-2 border-gray-300"
+                                type="checkbox"
+                                onChange={(e) => handleCheck(e, extension)}
+                                id={extension.id}
+                                name="drone"
+                                value={extension.name}
+                              />
+                              <label for="huey">{extension.name}</label>
+                            </div>
+                          ))}
                         </fieldset>
                         <fieldset className="mt-4">
                           <legend className="text-fuchsia-500">
@@ -737,12 +717,12 @@ export default function Example({
                 </button>
               </div>
               <div className="relative">
-                  <CopyBlock
-                    text={text}
-                    theme={nord}
-                    language={"rust"}
-                    showLineNumbers={true}
-                  />
+                <CopyBlock
+                  text={text}
+                  theme={nord}
+                  language={'rust'}
+                  showLineNumbers={true}
+                />
               </div>
             </div>
           </div>
