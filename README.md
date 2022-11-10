@@ -1,5 +1,5 @@
 # Welcome to the Polkadot Contract Wizard
-
+	The polkadot contract wizard aims to be the project that provides the entry point for the next generation of web3 users, developers and non developers in the Polkadot ecosystem. It will achieve that goal by enabling new users creating their own contracts in a few clicks. We want to  provide the possibility to artists to be able to create their own PSP34 contract for publishing their work. As artists they need to focus on what they do, so we make the access to smart contracts easy for them. We also expect people that have a great idea to be able to create their own token PSP22 for financing their idea. Those users don’t need to care about programming, but they need to be able to customize their smart contracts in a simple way with the support of the developer community around the world.
 ## Available Scripts
 
 In the project directory, you can run:
